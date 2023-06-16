@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void // Resetear las contraseñas
     {
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
