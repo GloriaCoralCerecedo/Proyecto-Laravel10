@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description'); //nombre no lleva tildes ni caracteres extraños, solo alfanumericos
+            $table->text('category');
             $table->timestamps();
         });
     }

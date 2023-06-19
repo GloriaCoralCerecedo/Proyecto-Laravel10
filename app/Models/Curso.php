@@ -11,5 +11,5 @@ class Curso extends Model
 
     //El modelo Curso administra la tabla users
     //Sin utilizar la conveción
-    protected $table = "users";
+    //protected $table = "users";
 }
