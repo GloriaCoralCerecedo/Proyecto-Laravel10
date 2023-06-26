@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +44,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected function name(): Attribute
+    {
+        // valor = GlOriA CoRal
+
+        return new Attribute(
+        // get:function($value){
+        //     return ucwords($value);//Gloria Coral
+        // },
+
+        get: fn($value) => ucwords($value),//Gloria Coral
+
+        // set: function($value){
+        //     return strtolower($value);//gloria coral
+        // });
+
+        set: fn($value) => strtolower($value)//gloria coral
+        );
+
+    }
+
+    //   Accesor anteriormente
+    //   public function getNameAttribute($value){
+    //         return ucwords($value);
+    //   }
+
+    //   Mutadores anteriormente
+    //   public function setNameAttribute($value){
+    //     $this->attributes['name'] = strtolower($value);
+    //   }
 }
