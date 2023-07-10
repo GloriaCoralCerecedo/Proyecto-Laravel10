@@ -13,22 +13,45 @@
         <label>
             Nombre:
             <br>
-            <input type="text" name="name">
+            {{-- Mantiene lo que el usuario escribio --}}
+            <input type="text" name="name" value="{{old('name')}}">
         </label>
+
+        {{-- Directiva del blade --}}
+        {{-- verifica si ha habido  algún error de validación en el campo name--}}
+        {{-- Si ha habido imprime un mensaje de error--}}
+        @error('name')
+            <br>
+            <small>* {{$message}}</small>
+            <br>
+        @enderror
 
         <br>
         <label>
             Descripción:
             <br>
-            <textarea type="text" name="description" rows="5"></textarea>
+            <textarea name="description" rows="5">{{old('description')}}</textarea>
         </label>
+
+        @error('description')
+            <br>
+            <small>* {{$message}}</small>
+            <br>
+        @enderror
 
         <br>
         <label>
             Categoría:
             <br>
-            <input type="text" name="category">
+            <input type="text" name="category" value="{{old('category')}}">
         </label>
+
+        @error('category')
+            <br>
+            <small>* {{$message}}</small>
+            <br>
+        @enderror
+
         <br>
         <button type="submit">Enviar formulario</button>
     </form>

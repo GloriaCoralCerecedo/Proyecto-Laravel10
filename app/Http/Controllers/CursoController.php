@@ -29,12 +29,27 @@ class CursoController extends Controller
     }
 
     public function store(Request $request){
+
+        //Flujo del programa
+        // Verifican que los campos tengan algún contenido
+        // Si alguna de esas reglas de validación, no cumple, retorna al formulario
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+
         //return $request->all();
+
+        //Se crea una nueva instancia del modelo curso
         $curso = new Curso();
+
+        //Crea el objeto
         $curso->name = $request->name;
         $curso->description = $request->description;
         $curso->category = $request->category;
 
+        //Lo guarda en la base de datos
         $curso->save();
 
         //Redireccionar al curso creado
@@ -60,6 +75,13 @@ class CursoController extends Controller
     }
 
     public function update(Request $request, Curso $curso){
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+
         //return $request->all();
         $curso->name = $request->name;
         $curso->description = $request->description;

@@ -9,6 +9,11 @@
     <form action="{{route('cursos.update', $curso)}}" method="POST">
 
         {{-- Token --}}
+        {{-- No solo crea el token, si no que lleva un registro de los token que se general, 
+            solo se maneja en la ruta especifica que definimos --}}
+        {{-- Si se manda el token de otra ruta o una ruta distinta pero propia va a salir el token caducado--}}
+        {{-- Los Token tienen un tiempo de vida, despues de cierta cantidad de horas, 
+            laravel elimina los registros del token (Token caducado)--}}
         @csrf
 
         {{-- Directiva del método PUT --}}
@@ -20,6 +25,12 @@
             <input type="text" name="name" value="{{$curso->name}}">
         </label>
 
+        @error('name')
+            <br>
+            <small>* {{$message}}</small>
+            <br>
+        @enderror
+
         <br>
         <label>
             Descripción:
@@ -27,12 +38,25 @@
             <textarea type="text" name="description" rows="5">{{$curso->description}}</textarea>
         </label>
 
+        @error('description')
+            <br>
+            <small>* {{$message}}</small>
+            <br>
+        @enderror
+
         <br>
         <label>
             Categoría:
             <br>
             <input type="text" name="category" value="{{$curso->category}}">
         </label>
+
+        @error('category')
+            <br>
+            <small>* {{$message}}</small>
+            <br>
+        @enderror
+
         <br>
         <button type="submit">Actualizar formulario</button>
     </form>

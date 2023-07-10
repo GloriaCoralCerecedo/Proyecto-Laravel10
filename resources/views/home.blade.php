@@ -4,4 +4,5 @@
 
 @section('content')  <!--sección más grande-->
     <h1>Bienvenido a la página principal</h1>
+    <a href="{{route('cursos.index')}}">Ir a Cursos</a>
 @endsection()
