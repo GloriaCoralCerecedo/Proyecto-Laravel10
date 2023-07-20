@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use Illuminate\Contracts\Pagination\CursorPaginator;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +22,18 @@ Route::get('/', HomeController::class);
 //Grupo de  rutas
 //fuction - > función anónima
 // ->name('') - Nombre de la ruta
-Route::controller(CursoController::class)->group(function(){
-    Route::get('cursos', 'index')->name('cursos.index');
-    Route::get('cursos/create', 'create')->name('cursos.create');
-    Route::post('cursos', 'store')->name('cursos.store');
-    Route::get('cursos/{curso}', 'show')->name('cursos.show');
-    Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
-    Route::put('cursos/{curso}', 'update')->name('cursos.update');
-    Route::delete('cursos/{curso}', 'destroy')->name('cursos.destroy');
-});
+// Route::controller(CursoController::class)->group(function(){
+//     Route::get('cursos', 'index')->name('cursos.index');
+//     Route::get('cursos/create', 'create')->name('cursos.create');
+//     Route::post('cursos', 'store')->name('cursos.store');
+//     Route::get('cursos/{curso}', 'show')->name('cursos.show');
+//     Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
+//     Route::put('cursos/{curso}', 'update')->name('cursos.update');
+//     Route::delete('cursos/{curso}', 'destroy')->name('cursos.destroy');
+// });
 
+//Route::resource('asignaturas', CursoController::class)->parameters(['asignaturas' => 'curso'])->names('cursos');
+Route::resource('cursos', CursoController::class);
 
 
 // //? - variable opcional, = null - variable de la función
