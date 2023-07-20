@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreCurso;
+
 // use App\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
 
@@ -28,31 +30,44 @@ class CursoController extends Controller
         return view('cursos.create');
     }
 
-    public function store(Request $request){
+    public function store(StoreCurso $request){
 
         //Flujo del programa
         // Verifican que los campos tengan algún contenido
         // Si alguna de esas reglas de validación, no cumple, retorna al formulario
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'category' => 'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required|max:10',
+        //     'description' => 'required',
+        //     'category' => 'required'
+        // ]);
 
         //return $request->all();
 
-        //Se crea una nueva instancia del modelo curso
-        $curso = new Curso();
+        // //Se crea una nueva instancia del modelo curso
+        // $curso = new Curso();
 
-        //Crea el objeto
-        $curso->name = $request->name;
-        $curso->description = $request->description;
-        $curso->category = $request->category;
+        // //Crea el objeto
+        // $curso->name = $request->name;
+        // $curso->description = $request->description;
+        // $curso->category = $request->category;
 
-        //Lo guarda en la base de datos
-        $curso->save();
+        // //Lo guarda en la base de datos
+        // $curso->save();
 
-        //Redireccionar al curso creado
+        // $curso = Curso::create([
+        //     'name' => $request->name,
+        //     'description' =>  $request->description,
+        //     'category' => $request->category
+        // ]);
+
+        //return $request->all();
+
+        //Crea una instancia de la clase curso 
+        $curso = Curso::create($request->all());
+
+        //Redireccionar al curso creado y le agrega las 3 propiedades, se almacena en la variable curso
+        //Y al final salva el registro en nuestra base de datos
+        //Ignorara el token
         return redirect()->route('cursos.show', $curso);
 
         //return $curso;
@@ -82,14 +97,24 @@ class CursoController extends Controller
             'category' => 'required'
         ]);
 
-        //return $request->all();
-        $curso->name = $request->name;
-        $curso->description = $request->description;
-        $curso->category = $request->category;
+        // //return $request->all();
+        // $curso->name = $request->name;
+        // $curso->description = $request->description;
+        // $curso->category = $request->category;
 
-        //Actualiza a nivel de ase de datos
-        $curso->save();
+        // //Actualiza a nivel de ase de datos
+        // $curso->save();
+
+        //El método update va a empezar a modificar las propiedades del objeto, con los datos que se esten mandando del formulario
+        //Una vez que haya modificado las propiedades, ejecuta el metodo save y se actualiza
+        $curso->update($request->all());
 
         return redirect()->route('cursos.show', $curso);
+    }
+
+    public function destroy(Curso $curso){
+        $curso->delete();
+
+        return redirect()->route('cursos.index');
     }
 }
