@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->text('description'); //nombre no lleva tildes ni caracteres extraños, solo alfanumericos
             $table->text('category');
             $table->timestamps();

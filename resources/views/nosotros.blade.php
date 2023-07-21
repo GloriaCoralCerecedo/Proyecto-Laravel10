@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')  <!--directiva de blade-->
 
-@section('title', 'Home')   <!--solo una cadena-->
+@section('title', 'Nosotros')   <!--solo una cadena-->
 
 @section('content')  <!--sección más grande-->
-    <h1>Bienvenido a la página principal</h1>
+    <h1>Nosotros</h1>
 @endsection()

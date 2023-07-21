@@ -17,6 +17,10 @@ class Curso extends Model
     // Array vacio, porque no tenemos campo protegido
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';  
+    }
     //El modelo Curso administra la tabla users
     //Sin utilizar la conveción
     //protected $table = "users";

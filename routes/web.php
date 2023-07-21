@@ -17,7 +17,7 @@ use Illuminate\Contracts\Pagination\CursorPaginator;
 */
 
 //Controlador HomeController
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 //Grupo de  rutas
 //fuction - > función anónima
@@ -34,6 +34,11 @@ Route::get('/', HomeController::class);
 
 //Route::resource('asignaturas', CursoController::class)->parameters(['asignaturas' => 'curso'])->names('cursos');
 Route::resource('cursos', CursoController::class);
+
+//view - esta forma de definir las rutas, solo debemos utilizar cuando queremos mostrar contenido estático.
+//Porque solo queremos mostrar una vista
+//nosotros -> nombre de la url, nombre de la vista 
+Route::view('nosotros', 'nosotros')->name('nosotros');
 
 
 // //? - variable opcional, = null - variable de la función
