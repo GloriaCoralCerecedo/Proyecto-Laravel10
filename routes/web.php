@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use Illuminate\Contracts\Pagination\CursorPaginator;
+use App\Mail\ContactanosMilable;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,10 @@ Route::resource('cursos', CursoController::class);
 //Porque solo queremos mostrar una vista
 //nosotros -> nombre de la url, nombre de la vista 
 Route::view('nosotros', 'nosotros')->name('nosotros');
+
+Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
+
+Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
 
 // //? - variable opcional, = null - variable de la función

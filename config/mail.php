@@ -12,7 +12,7 @@ return [
     | and used as needed; however, this mailer will be used by default.
     |
     */
-
+    //Tomara en cuenta Mail_Mailer, de lo contrario smtp
     'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
